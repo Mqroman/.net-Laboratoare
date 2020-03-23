@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="People" EntityType="Model1.Person" />
+    <EntitySet Name="Customers" EntityType="Model1.Customer" />
+    <EntitySet Name="Orders1" EntityType="Model1.Order" />
+    <AssociationSet Name="CustomerOrders" Association="Model1.CustomerOrders">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders1" />
+    </AssociationSet>
+    <EntitySet Name="Albums" EntityType="Model1.Album" />
+    <EntitySet Name="Artists" EntityType="Model1.Artist" />
+    <AssociationSet Name="AlbumArtist" Association="Model1.AlbumArtist">
+      <End Role="Album" EntitySet="Albums" />
+      <End Role="Artist" EntitySet="Artists" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="MidleName" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="TelephonNumber" Type="String" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="20" />
+    <NavigationProperty Name="Orders" Relationship="Model1.CustomerOrders" FromRole="Customer" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TotalValue" Type="Decimal" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Model1.CustomerOrders" FromRole="Orders" ToRole="Customer" />
+    <Property Name="CustomerCustomerId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="CustomerOrders">
+    <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="Model1.Order" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerCustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="AlbumId" />
+    </Key>
+    <Property Name="AlbumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlbumName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Artists" Relationship="Model1.AlbumArtist" FromRole="Album" ToRole="Artist" />
+  </EntityType>
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="ArtistId" />
+    </Key>
+    <Property Name="ArtistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" />
+    <Property Name="LastName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Albums" Relationship="Model1.AlbumArtist" FromRole="Artist" ToRole="Album" />
+  </EntityType>
+  <Association Name="AlbumArtist">
+    <End Type="Model1.Album" Role="Album" Multiplicity="*" />
+    <End Type="Model1.Artist" Role="Artist" Multiplicity="*" />
+  </Association>
+</Schema>
