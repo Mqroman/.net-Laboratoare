@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\ModelDesignFirst_L1\ModelDesignFirst_L1\Model1.edmx" Link="Model1.edmx" />
+    <None Include="..\..\ModelDesignFirst_L1\ModelDesignFirst_L1\Model1.edmx.diagram" Link="Model1.edmx.diagram" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameWorkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.tools" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>
+        runtime; build; native; contentfiles; analyzers;
+        buildtransitive
+      </IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\bin\Debug\netcoreapp3.1\ClassLibraryNetCore_1.deps.json
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\bin\Debug\netcoreapp3.1\ClassLibraryNetCore_1.dll
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\bin\Debug\netcoreapp3.1\ClassLibraryNetCore_1.pdb
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\obj\Debug\netcoreapp3.1\ClassLibraryNetCore_1.csprojAssemblyReference.cache
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\obj\Debug\netcoreapp3.1\ClassLibraryNetCore_1.AssemblyInfoInputs.cache
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\obj\Debug\netcoreapp3.1\ClassLibraryNetCore_1.AssemblyInfo.cs
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\obj\Debug\netcoreapp3.1\ClassLibraryNetCore_1.dll
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\obj\Debug\netcoreapp3.1\ClassLibraryNetCore_1.pdb
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\bin\Debug\netcoreapp3.1\ClassLibraryNetCore_1.runtimeconfig.json
+C:\Users\Utilizator 5\source\repos\ClassLibraryNetCore_1\ClassLibraryNetCore_1\bin\Debug\netcoreapp3.1\ClassLibraryNetCore_1.runtimeconfig.dev.json
