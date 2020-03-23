@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="People" EntityType="Model1.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="Model1.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Orders1" EntityType="Model1.Store.Orders1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Albums" EntityType="Model1.Store.Albums" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Artists" EntityType="Model1.Store.Artists" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AlbumArtist" EntityType="Model1.Store.AlbumArtist" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CustomerOrders" Association="Model1.Store.CustomerOrders">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlbumArtist_Album" Association="Model1.Store.FK_AlbumArtist_Album">
+      <End Role="Album" EntitySet="Albums" />
+      <End Role="AlbumArtist" EntitySet="AlbumArtist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlbumArtist_Artist" Association="Model1.Store.FK_AlbumArtist_Artist">
+      <End Role="Artist" EntitySet="Artists" />
+      <End Role="AlbumArtist" EntitySet="AlbumArtist" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="MidleName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="TelephonNumber" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Orders1">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TotalValue" Type="decimal" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="CustomerCustomerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Albums">
+    <Key>
+      <PropertyRef Name="AlbumId" />
+    </Key>
+    <Property Name="AlbumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlbumName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Artists">
+    <Key>
+      <PropertyRef Name="ArtistId" />
+    </Key>
+    <Property Name="ArtistId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AlbumArtist">
+    <Key>
+      <PropertyRef Name="Albums_AlbumId" />
+      <PropertyRef Name="Artists_ArtistId" />
+    </Key>
+    <Property Name="Albums_AlbumId" Type="int" Nullable="false" />
+    <Property Name="Artists_ArtistId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CustomerOrders">
+    <End Role="Customer" Type="Model1.Store.Customers" Multiplicity="1" />
+    <End Role="Orders" Type="Model1.Store.Orders1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerCustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlbumArtist_Album">
+    <End Role="Album" Type="Model1.Store.Albums" Multiplicity="1" />
+    <End Role="AlbumArtist" Type="Model1.Store.AlbumArtist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumId" />
+      </Principal>
+      <Dependent Role="AlbumArtist">
+        <PropertyRef Name="Albums_AlbumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlbumArtist_Artist">
+    <End Role="AlbumArtist" Type="Model1.Store.AlbumArtist" Multiplicity="*" />
+    <End Role="Artist" Type="Model1.Store.Artists" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="ArtistId" />
+      </Principal>
+      <Dependent Role="AlbumArtist">
+        <PropertyRef Name="Artists_ArtistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
