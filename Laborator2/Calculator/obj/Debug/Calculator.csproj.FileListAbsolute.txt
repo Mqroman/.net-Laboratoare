@@ -1,0 +1,9 @@
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\bin\Debug\Calculator.exe
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\bin\Debug\Calculator.pdb
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\obj\Debug\Calculator.csprojAssemblyReference.cache
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\obj\Debug\Calculator.Views.MainForm.resources
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\obj\Debug\Calculator.exe
+C:\Users\Utilizator 5\Downloads\net2-master\Calculator\Calculator\obj\Debug\Calculator.pdb
