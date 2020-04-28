@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Galeries" EntityType="Model1.Store.Galeries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Persoanas" EntityType="Model1.Store.Persoanas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Grups" EntityType="Model1.Store.Grups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GrupGalerie" EntityType="Model1.Store.GrupGalerie" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GrupPersoana" EntityType="Model1.Store.GrupPersoana" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_GrupGalerie_Grup" Association="Model1.Store.FK_GrupGalerie_Grup">
+      <End Role="Grup" EntitySet="Grups" />
+      <End Role="GrupGalerie" EntitySet="GrupGalerie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupGalerie_Galerie" Association="Model1.Store.FK_GrupGalerie_Galerie">
+      <End Role="Galerie" EntitySet="Galeries" />
+      <End Role="GrupGalerie" EntitySet="GrupGalerie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupPersoana_Grup" Association="Model1.Store.FK_GrupPersoana_Grup">
+      <End Role="Grup" EntitySet="Grups" />
+      <End Role="GrupPersoana" EntitySet="GrupPersoana" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupPersoana_Persoana" Association="Model1.Store.FK_GrupPersoana_Persoana">
+      <End Role="Persoana" EntitySet="Persoanas" />
+      <End Role="GrupPersoana" EntitySet="GrupPersoana" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Galeries">
+    <Key>
+      <PropertyRef Name="Id_galerie" />
+    </Key>
+    <Property Name="Id_galerie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataCreare" Type="datetime" Nullable="false" />
+    <Property Name="Eveniment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Locatie" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adresa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tip" Type="nvarchar(max)" Nullable="false" DefaultValue="poza" />
+  </EntityType>
+  <EntityType Name="Persoanas">
+    <Key>
+      <PropertyRef Name="Id_persoana" />
+    </Key>
+    <Property Name="Id_persoana" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nume" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prenume" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_P" Type="int" Nullable="false" />
+    <Property Name="Id_G" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GrupGalerie">
+    <Key>
+      <PropertyRef Name="Grups_Id" />
+      <PropertyRef Name="Galeries_Id_galerie" />
+    </Key>
+    <Property Name="Grups_Id" Type="int" Nullable="false" />
+    <Property Name="Galeries_Id_galerie" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GrupPersoana">
+    <Key>
+      <PropertyRef Name="Grups_Id" />
+      <PropertyRef Name="Persoanas_Id_persoana" />
+    </Key>
+    <Property Name="Grups_Id" Type="int" Nullable="false" />
+    <Property Name="Persoanas_Id_persoana" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_GrupGalerie_Grup">
+    <End Role="Grup" Type="Model1.Store.Grups" Multiplicity="1" />
+    <End Role="GrupGalerie" Type="Model1.Store.GrupGalerie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupGalerie">
+        <PropertyRef Name="Grups_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupGalerie_Galerie">
+    <End Role="GrupGalerie" Type="Model1.Store.GrupGalerie" Multiplicity="*" />
+    <End Role="Galerie" Type="Model1.Store.Galeries" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Galerie">
+        <PropertyRef Name="Id_galerie" />
+      </Principal>
+      <Dependent Role="GrupGalerie">
+        <PropertyRef Name="Galeries_Id_galerie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupPersoana_Grup">
+    <End Role="Grup" Type="Model1.Store.Grups" Multiplicity="1" />
+    <End Role="GrupPersoana" Type="Model1.Store.GrupPersoana" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupPersoana">
+        <PropertyRef Name="Grups_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupPersoana_Persoana">
+    <End Role="GrupPersoana" Type="Model1.Store.GrupPersoana" Multiplicity="*" />
+    <End Role="Persoana" Type="Model1.Store.Persoanas" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Persoana">
+        <PropertyRef Name="Id_persoana" />
+      </Principal>
+      <Dependent Role="GrupPersoana">
+        <PropertyRef Name="Persoanas_Id_persoana" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Galeries" EntityType="Model1.Galerie" />
+          <EntitySet Name="Persoanas" EntityType="Model1.Persoana" />
+          <EntitySet Name="Grups" EntityType="Model1.Grup" />
+          <AssociationSet Name="GrupGalerie" Association="Model1.GrupGalerie">
+            <End Role="Grup" EntitySet="Grups" />
+            <End Role="Galerie" EntitySet="Galeries" />
+          </AssociationSet>
+          <AssociationSet Name="GrupPersoana" Association="Model1.GrupPersoana">
+            <End Role="Grup" EntitySet="Grups" />
+            <End Role="Persoana" EntitySet="Persoanas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Galerie">
+          <Key>
+            <PropertyRef Name="Id_galerie" />
+          </Key>
+          <Property Name="Id_galerie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCreare" Type="DateTime" Nullable="false" />
+          <Property Name="Eveniment" Type="String" Nullable="false" />
+          <Property Name="Locatie" Type="String" Nullable="false" />
+          <Property Name="Adresa" Type="String" Nullable="false" />
+          <Property Name="Tip" Type="String" Nullable="false" DefaultValue="poza" />
+          <NavigationProperty Name="Grups" Relationship="Model1.GrupGalerie" FromRole="Galerie" ToRole="Grup" />
+        </EntityType>
+        <EntityType Name="Persoana">
+          <Key>
+            <PropertyRef Name="Id_persoana" />
+          </Key>
+          <Property Name="Id_persoana" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume" Type="String" Nullable="false" />
+          <Property Name="Prenume" Type="String" Nullable="false" />
+          <NavigationProperty Name="Grups" Relationship="Model1.GrupPersoana" FromRole="Persoana" ToRole="Grup" />
+        </EntityType>
+        <EntityType Name="Grup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Galeries" Relationship="Model1.GrupGalerie" FromRole="Grup" ToRole="Galerie" />
+          <NavigationProperty Name="Persoanas" Relationship="Model1.GrupPersoana" FromRole="Grup" ToRole="Persoana" />
+          <Property Name="Id_P" Type="Int32" Nullable="false" />
+          <Property Name="Id_G" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="GrupGalerie">
+          <End Type="Model1.Grup" Role="Grup" Multiplicity="*" />
+          <End Type="Model1.Galerie" Role="Galerie" Multiplicity="*" />
+        </Association>
+        <Association Name="GrupPersoana">
+          <End Type="Model1.Grup" Role="Grup" Multiplicity="*" />
+          <End Type="Model1.Persoana" Role="Persoana" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Galeries">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Galerie)">
+        <MappingFragment StoreEntitySet="Galeries">
+          <ScalarProperty Name="Id_galerie" ColumnName="Id_galerie" />
+          <ScalarProperty Name="DataCreare" ColumnName="DataCreare" />
+          <ScalarProperty Name="Eveniment" ColumnName="Eveniment" />
+          <ScalarProperty Name="Locatie" ColumnName="Locatie" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persoanas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Persoana)">
+        <MappingFragment StoreEntitySet="Persoanas">
+          <ScalarProperty Name="Id_persoana" ColumnName="Id_persoana" />
+          <ScalarProperty Name="Nume" ColumnName="Nume" />
+          <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grups">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Grup)">
+        <MappingFragment StoreEntitySet="Grups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_P" ColumnName="Id_P" />
+          <ScalarProperty Name="Id_G" ColumnName="Id_G" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GrupGalerie" TypeName="Model1.GrupGalerie" StoreEntitySet="GrupGalerie">
+      <EndProperty Name="Grup">
+        <ScalarProperty Name="Id" ColumnName="Grups_Id" />
+      </EndProperty>
+      <EndProperty Name="Galerie">
+        <ScalarProperty Name="Id_galerie" ColumnName="Galeries_Id_galerie" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GrupPersoana" TypeName="Model1.GrupPersoana" StoreEntitySet="GrupPersoana">
+      <EndProperty Name="Grup">
+        <ScalarProperty Name="Id" ColumnName="Grups_Id" />
+      </EndProperty>
+      <EndProperty Name="Persoana">
+        <ScalarProperty Name="Id_persoana" ColumnName="Persoanas_Id_persoana" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab694626a06d4b0da5122bb8646b6c5d" Name="Diagram1">
+        <EntityTypeShape EntityType="Model1.Galerie" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.Persoana" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.Grup" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="Model1.GrupGalerie" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.GrupPersoana" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

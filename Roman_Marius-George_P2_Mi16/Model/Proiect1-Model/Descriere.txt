@@ -1,0 +1,19 @@
+Am folosit 3 tabele :
+- Persoana 
+- Grup
+- Galerie
+
+2 asociere (Many/Many):
+Persoana - Grup
+Galerie - Grup
+
+Am folosit tabela grup pentru a adauga si verifica mai usor ce persoane apar intr-o poza sau film.
+
+Tabela "Persoana" contine numele si prenumele persoanei;
+Tabela "Grup"contine id-urile persoanelor si ale pozelor asociate;
+Tabela "Galerie" contine :
+- Data in care a fost adaugata ;
+- Evenimentul unde a fost facuta;
+- Locatia unde a fost facuta;
+- Adresa in calculator a fisierului;
+- Tipul (poza/film);

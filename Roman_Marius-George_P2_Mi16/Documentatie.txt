@@ -1,0 +1,10 @@
+Subsemnatul Roman Marius-George , declar pe propria raspundere ca acest cod nu a fost copiat din Internet sau din
+alte surse. Pentru documentare am folosit urmatoarele surse:
+
+- link-uri: 
+-> https://profs.info.uaic.ro/~iasimin/
+-> https://www.youtube.com/watch?v=C9s0H6yeFLQ
+-> https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqldataadapter.selectcommand?view=netframework-4.8
+-> https://stackoverflow.com/questions/18475195/error-there-is-already-an-open-datareader-associatedwith-this-command-which-mu/18475525
+-> https://www.aspsnippets.com/Articles/Export-data-from-SQL-Server-to-Text-file-in-C-andVBNet.aspx
+-> https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/how-to-bind-data-to-thewindows-forms-datagridview-control
