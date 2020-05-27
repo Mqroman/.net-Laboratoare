@@ -1,0 +1,234 @@
+﻿@page
+@model RazorPages.Pages.Medias.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1>Fa o cautare. .</h1>
+
+<p>
+    <a asp-page="Create">Adauga nou</a>
+</p>
+
+
+<tr>
+    <th>
+
+        <form>
+            <p>
+                
+                Cauta dupa Persoana -:  <input type="text" asp-for="SearchString5" />
+                <input type="submit" value="Incearca" />
+
+            </p>
+        </form>
+    </th>
+    <th>
+        <form>
+            <p>
+                Cauta dupa Eveniment: <input type="text" asp-for="SearchString2" />
+                <input type="submit" value="Incearca" />
+            </p>
+        </form>
+    </th>
+    <th>
+        <form>
+            <p>
+                Cauta dupa Peisaj -----:      <input type="text" asp-for="SearchString4" />
+                <input type="submit" value="Incearca" />
+            </p>
+        </form>
+    </th>
+    <th>
+        <form>
+            <p>
+                Cauta dupa Locuri ----: <input type="text" asp-for="SearchString3" />
+                <input type="submit" value="Incearca" />
+            </p>
+        </form>
+    </th>
+    <th>
+        <form>
+            <p>
+                Cauta dupa Altele ----: <input type="text" asp-for="SearchString1" />
+                <input type="submit" value="Incearca" />
+            </p>
+        </form>
+    </th>
+    <form>
+        <p>
+            <br>
+            <br>
+            <input type="button" id="btnGetCount" value="Numarul de rezultate" onclick="getValue()" />
+            <input type="button" id="btnGetAll" value="Cauta dupa toate" onclick="getFromAll()" />
+        </p>
+    </form>
+
+
+
+    <table class="table" id="myTable2">
+        <thead>
+            <tr>
+                <th onclick="sortTablePath(0)">
+                    Adresa
+                </th>
+                <th onclick="sortTablePath(1)">
+                   Persoane
+                </th>
+                <th>
+                   Eveniment
+                </th>
+                <th>
+                   Peisaj
+                </th>
+                <th>
+                   Loc
+                </th>
+                <th>
+                   Altele
+                </th>
+                <th>
+                   DataCreare
+                </th>
+
+
+               
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.MediaDTO)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Path)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Persoane)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Evenimente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Peisaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Locuri)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Altele)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCreare)
+                </td>
+
+
+               
+
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    @section Scripts {
+        <script type="text/javascript">
+            function sortTablePath(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable2");
+                switching = true;
+                dir = "asc";
+
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+
+                        switchcount++;
+                    } else {
+
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+
+            function sortTableCheck(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable2");
+                switching = true;
+                dir = "asc";
+
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                        if (dir == "asc") {
+                            if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+
+                        switchcount++;
+                    }
+                    else {
+
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+
+            function getValue() {
+                var rowCount = $("#myTable2 td").closest("tr").length;
+                var message = "Numarul de rezultate: " + rowCount;
+                alert(message);
+            };
+        </script>
+    }
