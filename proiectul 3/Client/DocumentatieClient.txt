@@ -1,0 +1,20 @@
+Subsemnatul Marius-George Roman declar pe propria raspundere ca
+acest cod nu a fost copiat din Internet sau din alte surse. Pentru documentare
+am folosit urmatoarele surse:
+
+Link-uri:
+https://profs.info.uaic.ro/~iasimin/Laborator%20C%20S%20H/Laborator1-2016.pdf
+https://stackoverflow.com/questions/8986975/c-sharp-return-different-types
+https://www.aspsnippets.com/Articles/Export-data-from-SQL-Server-to-Text-file-in-C-andVBNet.aspx
+https://stackoverflow.com/questions/18475195/error-there-is-already-an-open-datareaderassociatedwith-this-command-which-mu/18475525
+https://docs.microsoft.com/enus/dotnet/api/system.data.sqlclient.sqlparametercollection.addwithvalue?
+view=netframework-4.8
+https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/how-to-bind-data-tothewindows-forms-datagridview-control
+https://forums.asp.net/t/1794939.aspx?How+to+read+output+of+sql+command+C+
+https://www.c-sharpcorner.com/UploadFile/mahesh/create-a-text-file-in-C-Sharp/
+
+
+Am flolosit GUI de la primul proiect, am creat Sett.cs care contine functiile necesare clientului (de afisare , de salvare etc.) si un config (app.config) ce contine datele necesare conectarii (adresa ,numele etc.).
+
+
+
